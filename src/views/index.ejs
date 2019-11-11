@@ -1,0 +1,121 @@
+<% include partials/_header %>
+
+    
+    <div class="container">
+        <div class="row">
+            <!--form-->
+            <div class="col-md-5">
+                <div class="card">
+                    <!--Colocar el contenido de esa tarjeta-->
+                    <div class="card-body"> 
+                        <form action="/api/addSong" method="POST" >
+                            <div class="form-group">
+                                <input type="text" name="name" placeholder="name of the song" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="artist" placeholder="name of the artist" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="datetime" name="age" placeholder="age of the song" class="form-control">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block" >send</button>
+                            
+                        </form>
+                        <br>
+                        <form action="/api/addList" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="nameList" placeholder="Name of the list" class="form-control">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block" >send</button>
+
+                        </form>
+                        <br>
+
+                        <form action="/api/addPlay" method="POST">
+                            <div class="form-group">
+                                <input type="search" id="miBusqueda" name="q" placeholder="Nombre de la Cancion que desea agregar" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <select name="" id="" class="form-control">
+                                    <option placeholder="hola">Hola Mundo</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block" >send</button>
+            
+                        </form>
+                        
+
+                    </div>
+
+                </div>
+            </div>
+            <!--list-->
+         
+            <div class="col-md-7">
+                <h2>Canciones</h2>
+                <table class="table table-bordered table-hover">
+                    <thead class="thead">
+                        <th>N°</th>
+                        <th>Name</th>
+                        <th>Artist</th>
+                        <th>Age</th>
+                        <th>Operation</th>
+                    </thead>
+
+                    <tbody>
+                        <% for(var i=0; i<canciones.length;i++){ %>
+                            <tr>
+                                <td><%= i + 1 %></td>
+                                <td><%= canciones[i].name %></td>
+                                <td><%= canciones[i].artist %></td>
+                                <td><%= canciones[i].age %></td>
+                                <td>
+                                    <a href="/api/delete/<%= canciones[i]._id %>" class="btn btn-danger">Deleted</a>
+                                    <a href="/api/update/<%= canciones[i]._id %>" class="btn btn-warning">Edit</a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
+                <h2>Listas de reproduccion</h2>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <th>N°</th>
+                        <th>Name</th>
+                        <th>Operation</th>
+                        
+                    </thead>
+
+                    <tbody>
+
+                        <% for(var i=0; i<listas.length;i++){ %>
+                            <tr>
+                                <td><%= i + 1 %></td>
+                                <td><%= listas[i].nameList %></td>
+                                <td>
+                                    <a href="/api/delete/<%= listas[i]._id %>" class="btn btn-danger">Deleted</a>
+                                    <a href="/api/updateList/<%= listas[i]._id %>" class="btn btn-warning">Edit</a>
+                                </td>
+                               
+                            </tr>
+                            
+                        <% } %>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+
+        
+<% include partials/_footer %>

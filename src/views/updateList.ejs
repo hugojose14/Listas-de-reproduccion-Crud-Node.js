@@ -1,0 +1,21 @@
+<% include partials/_header %>
+
+<%= lista %>
+
+<div class="col-md-5 ">
+        <div class="card">
+            <!--Colocar el contenido de esa tarjeta-->
+            <div class="card-body "> 
+                <form action="/api/updateList/<%= lista._id %>" method="POST" >
+                   
+                    <div class="form-group">
+                        <input type="text" name="nameList" placeholder="Name of the list" class="form-control" value="<%= lista.nameList%>">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block" >Update</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
